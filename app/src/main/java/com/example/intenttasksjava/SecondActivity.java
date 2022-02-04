@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.intenttasksjava.model.User;
+
 public class SecondActivity extends AppCompatActivity {
 
     @Override
@@ -18,7 +20,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private void initViews() {
         TextView getInfo = findViewById(R.id.getInfo);
-
-        getInfo.setText(getIntent().getStringExtra("info"));
+        User user = (User) getIntent().getSerializableExtra("user");
+        getInfo.setText(user.toString());
     }
 }

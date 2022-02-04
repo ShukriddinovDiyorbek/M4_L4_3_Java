@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.intenttasksjava.model.User;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,18 +23,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        EditText info = findViewById(R.id.info);
+        EditText name = findViewById(R.id.name);
+        EditText age = findViewById(R.id.age);
+
         Button button = findViewById(R.id.send_btn);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (info.getText().length()==0){
+                if (name.getText().length()==0 || age.getText().length()==0){
                     Toast.makeText(getApplicationContext(),"To'liq to'ldiring",Toast.LENGTH_LONG).show();
                 } else {
                     Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
-                    String str = info.getText().toString();
-                    intent.putExtra("info", str);
+                    User user = new User(name.getText().toString(),age.getText().toString());
+                    intent.putExtra("user", user);
                     startActivity(intent);
                 }
             }
